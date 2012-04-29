@@ -3,3 +3,4 @@
 
 [#1] Initial commit.
 [#1] Set up pera app.
+[#1] Set up rspec and guard.
