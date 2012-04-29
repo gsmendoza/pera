@@ -2,3 +2,4 @@
 # 2012-04-29
 
 [#1] Initial commit.
+[#1] Set up pera app.

@@ -22,6 +22,9 @@
 #-----------------------------------------------------------------------
 # money
 
+  has_value :amount
+  has_value :currency
+
   def self.from_string(str)
     tokens = str.match(/(\d+\.?\d*)\s*(\w+)/)
     new(:amount => tokens[1].to_f, :currency => Currency.find(tokens[2]))
@@ -42,14 +45,17 @@
 #-----------------------------------------------------------------------
 # currency
 
+    has_value :symbol
+    has_value :usd_conversion_rate
+
     def self.find(symbol)
       all.detect{|currency| currency.symbol == symbol}
     end
 
     def self.all
       @all ||= [
-        new(:symbol => 'USD'), # , :usd_conversion_rate => 1
-        new(:symbol => 'PHP')  # , :usd_conversion_rate => 1.0/40
+        new(:symbol => 'USD', :usd_conversion_rate => 1),
+        new(:symbol => 'PHP', :usd_conversion_rate => 1.0/40)
       ]
     end
 
