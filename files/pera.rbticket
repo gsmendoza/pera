@@ -1,0 +1,57 @@
+#-----------------------------------------------------------------------
+=begin
+  Scenario: I should be able to add monies in different currencies and convert them to usd
+    When I open the app
+    Then the app should ask me to enter the first amount in php
+    When I enter the first amount
+    Then the app should ask me to enter the second amount in usd
+    When I enter the second amount
+    Then the app should tell me the sum of the two amounts in usd
+=end
+
+#-----------------------------------------------------------------------
+# app
+
+    def execute
+      first_money = Money.from_string(ask("Please enter the first amount: "))
+      second_money = Money.from_string(ask("Please enter the second amount: "))
+      say "The sum of #{first_money} and #{second_money} is #{first_money.add(second_money)}"
+    end
+
+
+#-----------------------------------------------------------------------
+# money
+
+  def self.from_string(str)
+    tokens = str.match(/(\d+\.?\d*)\s*(\w+)/)
+    new(:amount => tokens[1].to_f, :currency => Currency.find(tokens[2]))
+  end
+
+  def add(other)
+    Money.new(:amount => self.to_usd.amount + other.to_usd.amount, :currency => Currency.find('USD'))
+  end
+
+  def to_s
+    "#{amount} #{currency.symbol}"
+  end
+
+  def to_usd
+    Money.new(:amount => self.amount * self.currency.usd_conversion_rate, :currency => Currency.find('USD'))
+  end
+
+#-----------------------------------------------------------------------
+# currency
+
+    def self.find(symbol)
+      all.detect{|currency| currency.symbol == symbol}
+    end
+
+    def self.all
+      @all ||= [
+        new(:symbol => 'USD'), # , :usd_conversion_rate => 1
+        new(:symbol => 'PHP')  # , :usd_conversion_rate => 1.0/40
+      ]
+    end
+
+#-----------------------------------------------------------------------
+
