@@ -5,3 +5,4 @@
 [#1] Set up pera app.
 [#1] Set up rspec and guard.
 [#1] Fix: unitialized constant Money.
+[#1] Implement Money.from_string.

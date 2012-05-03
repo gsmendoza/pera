@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency "thor"
+  s.add_runtime_dependency "valuable"
 
   s.add_development_dependency "coderay"
   s.add_development_dependency "guard"
