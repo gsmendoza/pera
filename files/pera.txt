@@ -7,3 +7,4 @@
 [#1] Fix: unitialized constant Money.
 [#1] Implement Money.from_string.
 [#1] I should be able to add moneys and see the result.
+[#1] Update the final slides of the presentation.

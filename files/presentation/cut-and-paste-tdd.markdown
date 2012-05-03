@@ -69,10 +69,20 @@ author: George Mendoza
 
 ## Demo
 
+0. _Plan/Design code._
+1. Write test.
+2. Watch it fail successfully.
+3. _Cut and paste code._
+4. Watch it pass.
+5. Repeat.
+
 !SLIDE
 
-## TDD versus C&P TDD
+## Does planning code violate TDD's test-first rule?
 
-* Test drives design?
-* Design drives tests?
+!SLIDE
+
+## Thanks
+
+* [http://github.com/gsmendoza/pera](github.com/gsmendoza/pera)
 
