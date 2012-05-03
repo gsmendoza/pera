@@ -24,4 +24,32 @@ describe Pera::Money do
         Pera::Money.new(:amount => 1, :currency => Pera::Currency.find('PHP'))
     end
   end
+
+  describe "add" do
+    it "should return the sum of two monies" do
+      money = Pera::Money.new(:amount => 1, :currency => Pera::Currency.find('USD'))
+      other = Pera::Money.new(:amount => 40, :currency => Pera::Currency.find('PHP'))
+
+      expected_result = Pera::Money.new(:amount => 2, :currency => Pera::Currency.find('USD'))
+
+      money.add(other).should == expected_result
+    end
+  end
+
+  describe "to_usd" do
+    it "should convert a non-usd money to usd" do
+      money = Pera::Money.new(:amount => 40, :currency => Pera::Currency.find('PHP'))
+      expected_result = Pera::Money.new(:amount => 1, :currency => Pera::Currency.find('USD'))
+      money.to_usd.should == expected_result
+    end
+  end
+
+  describe "to_s" do
+    it "should display the amount and currency" do
+      money = Pera::Money.new(:amount => 40, :currency => Pera::Currency.find('PHP'))
+      expected = "40 PHP"
+
+      money.to_s.should == expected
+    end
+  end
 end
